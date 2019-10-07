@@ -10,7 +10,18 @@ const { theme, rgba } = Utils;
 const { SIZES, COLORS } = theme;
 
 export default class VPN extends Component {
+  state = {
+    connected: false,
+  };
+
+  handleConnect() {
+    const { connected } = this.state;
+    this.setState({ connected: !connected });
+  }
+
   render() {
+    const { connected } = this.state;
+
     return (
       <Block safe center>
         <Block flex={false} padding={[20, 0]}> 
@@ -20,9 +31,25 @@ export default class VPN extends Component {
         </Block>
 
         <Block center middle>
-          <Block flex={false} row center middle white shadow>
-            <Text subtitle semibold gray> CONNECTED </Text>
-            <Block flex={false} radius={10} color={COLORS.success} style={styles.status} />
+          <Block 
+            flex={false} 
+            row 
+            center 
+            middle 
+            white 
+            shadow
+            radius={SIZES.base * 3}
+            padding={[SIZES.base, SIZES.padding]} 
+          >
+            <Text subtitle semibold gray height={30}> 
+              {connected ? "Connected" : "Disconnected"}
+            </Text>
+            <Block 
+              flex={false} 
+              radius={10} 
+              style={styles.status}
+              color={connected ? COLORS.success : rgba(COLORS.gray, 0.5)} 
+            />
           </Block> 
 
           <Image 
@@ -30,13 +57,17 @@ export default class VPN extends Component {
             source={images.icons.offline} 
           />
 
-          <Button outlined style={styles.connect}>
+          <Button 
+            outlined 
+            style={styles.connect} 
+            onPress={() => this.handleConnect()}
+          >
             <Text 
               caption 
               center 
               bold 
               margin={[10, 0]}>
-                CONNECTED
+                {connected ? "DISCONNECT" : "CONNECT NOW"}
             </Text>
           </Button>
         </Block>
