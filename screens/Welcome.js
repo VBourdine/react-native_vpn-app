@@ -10,7 +10,7 @@ const { SIZES, COLORS } = theme;
 
 const backgrounds = [
   {
-    title: "Secured, forever.",
+    title: "Secured forever.",
     description: "Lorem ipsum dolor cit amet",
     img: background.welcome,
   },

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Images, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { Block, Button, Text, Utils } from "expo-ui-kit";
 
 // constants
@@ -20,7 +20,15 @@ export default class VPN extends Component {
         </Block>
 
         <Block center middle>
-          <Image source={images.icons.online} />
+          <Block flex={false} row center middle white shadow>
+            <Text subtitle semibold gray> CONNECTED </Text>
+            <Block flex={false} radius={10} color={COLORS.success} style={styles.status} />
+          </Block> 
+
+          <Image 
+            style={styles.image} 
+            source={images.icons.offline} 
+          />
 
           <Button outlined style={styles.connect}>
             <Text 
@@ -28,7 +36,7 @@ export default class VPN extends Component {
               center 
               bold 
               margin={[10, 0]}>
-                Connect
+                CONNECTED
             </Text>
           </Button>
         </Block>
@@ -52,8 +60,13 @@ const styles = StyleSheet.create({
     width: SIZES.width / 2
   },
   image: {
-    width: 100,
-    heigh: 100,
+    width: 180,
+    height: 180,
     marginVertical: 20,
-  }
+  },
+  status: {
+    width: 8,
+    height: 8,
+    marginLeft: 10
+  },
 });
